@@ -1,0 +1,6 @@
+control/*.bin
+h264/h264.bin
+player/player.bin
+udhcpd.conf
+uuid.txt
+edid.txt
