@@ -15,7 +15,8 @@ Append this line to /etc/xdg/lxsession/LXDE-pi/autostart:
 <code>
 @lxterminal -l --working-directory=<absolute path of lazycast> -e ./all.sh
 </code>
-  
+
+
 For example, if lazycast is placed under ~/ (which corresponds to /home/pi/), append the following line to the file:
 
 <code>
