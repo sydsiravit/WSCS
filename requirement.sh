@@ -18,5 +18,5 @@ sudo reboot
 
 #for web&db
 
-pip install flask pymongo flask-sqlalchemy
+pip install flask flask-sqlalchemy
 sudo apt install gunicorn3
