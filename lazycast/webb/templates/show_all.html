@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+      
+      <h3>
+         <a href = "{{ url_for('show_all') }}">Home</a>
+      </h3>
+      
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+		
+      <h1>
+         current service name : {{ current_node_name }}
+      </h1>
+      
+      <h3> (<a href = "{{ url_for('new') }}">Change nodename
+         </a>)
+      </h3>
+      
+      
+      
+   </body>
+</html>

@@ -15,3 +15,8 @@ sudo apt install network-manager network-manager-gnome openvpn openvpn-systemd-r
 sudo apt purge dhcpcd5
 sudo systemctl disable systemd-resolved
 sudo reboot
+
+#for web&db
+
+pip install flask pymongo flask-sqlalchemy
+sudo apt install gunicorn3

@@ -10,10 +10,16 @@
 #
 #################################################################################
 managefrequency=1
+
+commandlines=$(gunicorn3 --pythonpath 'webb/' -b 0.0.0.0:8000  app:app) & continue
+
 while :
-do
+do	
 	p2pdevinterface=$(sudo wpa_cli interface | grep -E "p2p-dev" | tail -1)
 	wlaninterface=$(echo $p2pdevinterface | cut -c1-8 --complement)
+	
+	nodename=$(python readnn.py)
+	
 	echo $p2pdevinterface
 	echo $wlaninterface
 	ain="$(sudo wpa_cli interface)"
@@ -24,7 +30,7 @@ do
 
 	else
 		sudo wpa_cli -i$p2pdevinterface p2p_find type=progessive
-		sudo wpa_cli -i$p2pdevinterface set device_name "$(uname -n)"
+		sudo wpa_cli -i$p2pdevinterface set device_name "$nodename"
 		sudo wpa_cli -i$p2pdevinterface set device_type 7-0050F204-1
 		sudo wpa_cli -i$p2pdevinterface set p2p_go_ht40 1
 		sudo wpa_cli -i$p2pdevinterface wfd_subelem_set 0 000600111c44012c
@@ -85,7 +91,7 @@ do
 	sleep 3
 	sudo busybox udhcpd ./udhcpd.conf 
 	echo "The display is ready"
-	echo "Your device is called: "$(uname -n)""
+	echo "Your device is called: "$nodename""
 	while :
 	do	
 		echo "PIN:"	
@@ -97,7 +103,7 @@ do
 		
 		if [ "$pidrpiplay" == "" ]
 		then
-			commandlines=$(./build/rpiplay -b auto) & continue
+			commandlines=$(./build/rpiplay -b auto -n $nodename) & continue
 			
 		fi
 		
